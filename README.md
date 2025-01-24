@@ -28,7 +28,7 @@ Docker Compose
 1. Clone the Repository
 bash
 Copy
-git clone https://github.com/yourusername/kanban-board.git
+git clone https://github.com/farazabir/kanban.git
 cd kanban-board
 2. Run the Application
 To run the application using Docker Compose, execute the following command:
@@ -48,20 +48,29 @@ http://localhost:8080
 
 ## API Endpoints
 ## Authentication
-POST /api/v1/user: Register a new user.
+```http
+POST /api/v1/user:
+```
+Register a new user.
 
 POST /api/v1/user/login: Authenticate a user and receive a JWT token.
 
 ## Projects
+```http
 GET /api/projects: Get all projects.
-
+```
+```http
 POST /api/projects: Create a new project.
-
+```
+```http
 GET /api/projects/{id}: Get a project by ID.
-
+```
+```http
 PUT /api/projects/{id}: Update a project.
-
+```
+```http
 DELETE /api/projects/{id}: Delete a project.
+```
 
 ## Boards
 GET /api/boards: Get all boards.
