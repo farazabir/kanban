@@ -6,6 +6,8 @@ import com.faraz.Kanban.user.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProjectService {
 private final ProjectRepository projectRepository;
@@ -25,6 +27,9 @@ private final UserRepository userRepository;
         return projectRepository.save(project);
     }
 
-
+    public List<Project> getProjectByUser(String email){
+        User owner  = userRepository.findByEmail(email);
+        return projectRepository.findByOwner(owner);
+    }
 
 }

@@ -2,10 +2,8 @@ package com.faraz.Kanban.project;
 
 import com.faraz.Kanban.project.dto.ProjectRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/project")
@@ -22,5 +20,10 @@ public class ProjectController {
         return ResponseEntity.ok(projectService.createProject(projectRequest)).getBody();
      }
 
+     @GetMapping("/get")
+     public ResponseEntity<Object> getProject(){
+        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return ResponseEntity.ok(projectService.getProjectByUser(email));
+     }
 
 }
