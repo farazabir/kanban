@@ -6,6 +6,8 @@ import com.faraz.Kanban.project.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BoardService {
     @Autowired
@@ -24,5 +26,10 @@ public class BoardService {
         Project project = projectRepository.findById(projectId).orElseThrow(()-> new RuntimeException("Project not found"));
       Board board = Board.builder().name(boardRequest.getName()).project(project).build();
        return boardRepository.save(board);
+    }
+
+
+    public List<Board> getBoardByProjectId(Long projectId){
+        return boardRepository.findByProjectId(projectId);
     }
 }

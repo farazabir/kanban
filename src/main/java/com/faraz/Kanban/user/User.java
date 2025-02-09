@@ -1,4 +1,5 @@
 package com.faraz.Kanban.user;
+import com.faraz.Kanban.stripe.SubscriptionPlan;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -23,5 +24,7 @@ public class User {
  private LocalDateTime createdAt;
  private LocalDateTime updatedAt;
 
+ @Enumerated(EnumType.STRING)
+ private SubscriptionPlan subscriptionPlan = SubscriptionPlan.FREE;
 
 }
