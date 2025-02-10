@@ -1,6 +1,7 @@
 package com.faraz.Kanban.stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Subscription;
+import com.stripe.model.checkout.Session;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,11 +27,11 @@ public class StripeController {
         }
     }
 
-    @PostMapping("/subscribe")
-    public ResponseEntity<String> subscribeUser(@RequestParam String customerId, @RequestParam String priceId) {
+    @PostMapping("/create-checkout-session")
+    public ResponseEntity<String> createCheckoutSession(@RequestParam String customerId, @RequestParam String priceId) {
         try {
-            Subscription subscription = stripeService.createSubscription(customerId, priceId);
-            return ResponseEntity.ok("Subscription ID: " + subscription.getId());
+            Session session = stripeService.createCheckoutSession(customerId, priceId);
+            return ResponseEntity.ok(session.getUrl());
         } catch (StripeException e) {
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
