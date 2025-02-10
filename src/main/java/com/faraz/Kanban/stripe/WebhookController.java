@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/stripe/webhook")
 public class WebhookController {
-    @Value("${stripe.secret.webhook}")
-    private  String STRIPE_SECRET ;
+    private static final  String STRIPE_SECRET = "webhook sechret" ;
 
     @PostMapping
     public ResponseEntity<String> handleStripeEvent(@RequestBody String payload, @RequestHeader("Stripe-Signature") String sigHeader) {
